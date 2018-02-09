@@ -69,11 +69,15 @@ public class DispatcherServlet extends HttpServlet {
             Object instance = controllerClazz.newInstance();
             Object result = method.invoke(instance);
             if (result != null && result.getClass() == ModelAndView.class) {
-            
+                this.handlerResult(req, resp, result);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void handlerResult(HttpServletRequest req, HttpServletResponse resp, Object result) {
 
     }
 }
