@@ -58,8 +58,12 @@ public class DispatcherServlet extends HttpServlet {
         if ("/favicon.ico".equals(requestURI)) {
             return;
         }
+        if (requestURI != null && requestURI.contains(".")) {
+            requestURI = requestURI.substring(0, requestURI.lastIndexOf("."));
+        }
         ControllerBean controllerBean = urlMap.get(requestURI);
         if (controllerBean == null) {
+            req.getRequestDispatcher(requestURI).forward(req, resp);
             return;
         }
         System.out.println(urlMap);
@@ -69,7 +73,7 @@ public class DispatcherServlet extends HttpServlet {
             Object instance = controllerClazz.newInstance();
             Object result = method.invoke(instance);
             if (result != null && result.getClass() == ModelAndView.class) {
-                this.handlerResult(req, resp, result);
+                this.handlerResult(req, resp, (ModelAndView) result);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +81,17 @@ public class DispatcherServlet extends HttpServlet {
 
     }
 
-    private void handlerResult(HttpServletRequest req, HttpServletResponse resp, Object result) {
-
+    private void handlerResult(HttpServletRequest req, HttpServletResponse resp, ModelAndView modelAndView) throws ServletException, IOException {
+        String viewName = modelAndView.getViewName();
+        Map<String, Object> model = modelAndView.getModel();
+        Set<Map.Entry<String, Object>> entries = model.entrySet();
+        for (Map.Entry<String, Object> entry : entries) {
+            String modelName = entry.getKey();
+            Object value = entry.getValue();
+            req.setAttribute(modelName, value);
+        }
+        String prefix = "/WEB-INF/jsp/";
+        String suffix = ".jsp";
+        req.getRequestDispatcher(prefix + viewName + suffix).forward(req, resp);
     }
 }

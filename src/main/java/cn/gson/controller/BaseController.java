@@ -21,7 +21,7 @@ public class BaseController {
     @RequestMapping(value = "/xx")
     public ModelAndView base() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("zzy");
+        modelAndView.setViewName("base");
         modelAndView.addAttribute("msg", "hello zzy");
         return modelAndView;
     }
