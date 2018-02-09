@@ -45,7 +45,6 @@ public class DispatcherServlet extends HttpServlet {
                         String url = rm.value();
                         urlMap.put(url, new ControllerBean(aClass, method));
                     }
-
                 }
             }
         }
@@ -54,12 +53,12 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String requestURI = req.getRequestURI();
-        System.out.println(requestURI);
         if ("/favicon.ico".equals(requestURI)) {
             return;
         }
         if (requestURI != null && requestURI.contains(".")) {
             requestURI = requestURI.substring(0, requestURI.lastIndexOf("."));
+            System.out.println(requestURI);
         }
         ControllerBean controllerBean = urlMap.get(requestURI);
         if (controllerBean == null) {
@@ -89,6 +88,7 @@ public class DispatcherServlet extends HttpServlet {
             String modelName = entry.getKey();
             Object value = entry.getValue();
             req.setAttribute(modelName, value);
+            System.out.println(modelName);
         }
         String prefix = "/WEB-INF/jsp/";
         String suffix = ".jsp";
