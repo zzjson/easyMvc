@@ -1,0 +1,30 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!--处理器映射器-->
+    <!--
+        目的：选择哪一个处理器（controller）来处理当前请求
+        会按照处理器的id/name作为url去查找
+        /hello 去匹配id或者name为/hello的bean
+    -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+
+    <!--处理器适配器-->
+    <!--
+        目的：调用处理器（controller）的处理请求的方法
+            1.所有适配器实现HandlerAdapter方法
+            2.所有处理器实现 org.springframework.web.servlet.mvc.Controller;
+    -->
+    <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value=""/>
+        <property name="suffix" value=""/>
+    </bean>
+
+    <!--处理器-->
+    <bean name="/hello" class="cn.gson.controller.HelloController"></bean>
+</beans>
