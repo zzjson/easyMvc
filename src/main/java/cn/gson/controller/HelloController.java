@@ -1,10 +1,8 @@
 package cn.gson.controller;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p>****************************************************************************</p>
@@ -17,14 +15,12 @@ import javax.servlet.http.HttpServletResponse;
  * </ul>
  * <p>****************************************************************************</p>
  */
-public class HelloController implements Controller {
-
-    @Override
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("hello");
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/WEB-INF/jsp/hello.jsp");
-        modelAndView.addObject("msg", "fuck");
-        return modelAndView;
+@RequestMapping("/hello")
+@Controller
+public class HelloController {
+    @GetMapping("/xx")
+    public String modelAndView() {
+        return "hello";
     }
+
 }

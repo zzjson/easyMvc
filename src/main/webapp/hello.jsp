@@ -12,6 +12,6 @@
 </head>
 <body>
 xxxxx
-<img src="/images/333.png" alt="没有找到图片" width="610">
+<img src="/WEB-INF/images/333.png" alt="没有找到图片" width="610">
 </body>
 </html>
