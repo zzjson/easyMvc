@@ -39,5 +39,5 @@
     <mvc:annotation-driven/>
     <!--静态资源-->
     <mvc:default-servlet-handler/>
-    <!--<mvc:resources mapping="" location=""/>-->
+    <!--<mvc:resources mapping="/**" location="classpath:/images"/>-->
 </beans>
