@@ -1,8 +1,11 @@
 package cn.gson.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
  * <p>****************************************************************************</p>
@@ -21,4 +24,6 @@ import lombok.NoArgsConstructor;
 public class Cat {
     private String name;
     private Integer age;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date date;
 }

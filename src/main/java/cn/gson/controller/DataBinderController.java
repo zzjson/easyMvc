@@ -5,7 +5,6 @@ import cn.gson.model.Dog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,19 +22,19 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 @RequestMapping("/dog")
-public class DogConstroller {
+public class DataBinderController {
     @GetMapping({"form"})
     public ModelAndView index() {
         return new ModelAndView("form");
     }
 
-    @InitBinder("dog")//自定义数据绑定注册，把请求参数转化到对应对象的属性中去
+//    @InitBinder("dog")//自定义数据绑定注册，把请求参数转化到对应对象的属性中去
     protected void initDogBinder(WebDataBinder binder) {
         //设置字段前缀
         binder.setFieldDefaultPrefix("dog.");
     }
 
-    @InitBinder("cat")//自定义数据绑定注册，把请求参数转化到对应对象的属性中去
+//    @InitBinder("cat")//自定义数据绑定注册，把请求参数转化到对应对象的属性中去
     protected void initCatBinder(WebDataBinder binder) {
         //设置字段前缀
         binder.setFieldDefaultPrefix("cat.");
