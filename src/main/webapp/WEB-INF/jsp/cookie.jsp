@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<h5>This is index page</h5>
-
+${userAgent}
+<hr>
+${cookie}
 </body>
 </html>

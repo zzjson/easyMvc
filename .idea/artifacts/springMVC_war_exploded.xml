@@ -28,6 +28,7 @@
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-util-scan:8.5.20" />
           <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-jaspic-api:8.5.20" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.1.2" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.16.18" />
         </element>
       </element>
       <element id="directory" name="META-INF">
